@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import logo from "../assets/algo-logo.png";
 import bgImage from "../assets/backgroundImage.jpeg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const Route = createFileRoute("/login")({
   component: Login,
@@ -9,6 +10,7 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  
 
 
   const [formData, setFormData] = useState({
@@ -107,114 +109,80 @@ function Login() {
       </div>
 
       {/* Right Section - 25% */}
-      <div className="w-full lg:w-[35%] flex items-center justify-center bg-slate-50 p-8">
-        <div className="w-full max-w-md">
-          <h2 className="text-center text-4xl font-bold text-slate-800">
-            Welcome Back
-          </h2>
-
-          <p className="text-center text-slate-500 mt-2 mb-8">
-            Sign in to continue
-          </p>
-
-          <form onSubmit={handleSubmit}>
-            {/* Email */}
-            <div className="mb-5">
-              <label className="block text-slate-700 mb-2">
-                Email
-              </label>
-
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter Email"
-                className={`w-full h-12 px-4 rounded-lg border outline-none transition-all ${
-                  errors.email
-                    ? "border-red-500"
-                    : "border-gray-300 focus:border-red-500"
-                }`}
-              />
-
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email}
-                </p>
-              )}
+     <div className="flex flex-1 flex-col justify-center bg-white p-10 sm:p-11">
+            <div className="mb-8">
+              {/* <div className="mb-1.5 text-[11px] uppercase tracking-[0.15em] text-black/30">
+                Operator access
+              </div> */}
+              <h1 className="text-[22px] font-bold text-[#0a0f1a]">
+                Sign in to continue
+              </h1>
             </div>
+           <form onSubmit={handleSubmit}>
+  <div className="mb-4.5">
+    <label className="mb-2 block text-[11px] font-bold uppercase tracking-widest text-gray-800">
+      Email
+    </label>
 
-            {/* Password */}
-            <div className="mb-5">
-              <label className="block text-slate-700 mb-2">
-                Password
-              </label>
+    <input
+      type="text"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder="id@company.com"
+      className={`w-full rounded-lg border bg-neutral-50 px-3.5 py-2.5 text-[13px] outline-none ${
+        errors.email
+          ? "border-red-500"
+          : "border-black/15 focus:border-[#e53935]"
+      }`}
+    />
 
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter Password"
-                  className={`w-full h-12 px-4 rounded-lg border outline-none transition-all ${
-                    errors.password
-                      ? "border-red-500"
-                      : "border-gray-300 focus:border-red-500"
-                  }`}
-                />
+    {errors.email && (
+      <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+    )}
+  </div>
 
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2"
-                >
-                  {showPassword ? "🙈" : "👁️"}
-                </button>
-              </div>
+  <div className="mb-4.5">
+  <label className="mb-2 block text-[11px] font-bold uppercase tracking-widest text-gray-800">
+    Password
+  </label>
 
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password}
-                </p>
-              )}
-            </div>
+  <div className="relative">
+    <input
+      type={showPassword ? "text" : "password"}
+      name="password"
+      value={formData.password}
+      onChange={handleChange}
+      placeholder="••••••••••"
+      className={`w-full rounded-lg border bg-neutral-50 px-3.5 py-2.5 pr-10 text-[13px] outline-none ${
+        errors.password
+          ? "border-red-500"
+          : "border-black/15 focus:border-[#e53935]"
+      }`}
+    />
 
-            {/* Remember Me */}
-            <div className="flex items-center justify-between mb-6">
-              <label className="flex items-center gap-2 text-sm text-slate-600">
-                <input
-                  type="checkbox"
-                  name="remember"
-                  checked={formData.remember}
-                  onChange={handleChange}
-                  className="accent-blue-600"
-                />
-                Remember Me
-              </label>
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+    >
+      {showPassword ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
+    </button>
+  </div>
 
-              <a
-                href="#"
-                className="text-sm text-gray-600 hover:text-blue-800"
-              >
-                Forgot Password?
-              </a>
-            </div>
+  {errors.password && (
+    <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+  )}
+</div>
 
-            {/* Login Button */}
-            <button
-              type="submit"
-              className="w-full h-12 rounded-lg text-black font-semibold bg-red-700 transition-all duration-300"
-            >
-              Login
-            </button>
-          </form>
-
-          <p className="text-center text-slate-500 mt-8 text-sm">
-            © 2026 Asset Monitoring System
-          </p>
-        </div>
-      </div>
+<button
+  type="submit"
+  className="mt-6 flex w-full items-center justify-center gap-1.5 rounded-lg bg-[#e53935] px-4 py-3 text-[14px] font-semibold tracking-[0.06em] text-white transition-all hover:-translate-y-px hover:opacity-90 active:scale-[0.99]"
+>
+  Sign In
+</button>
+</form>
+          </div>
     </div>
   );
 }
